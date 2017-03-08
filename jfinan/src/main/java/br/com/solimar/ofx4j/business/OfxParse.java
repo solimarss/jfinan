@@ -28,10 +28,14 @@ public class OfxParse implements Serializable {
 	public static void main(String[] args) throws IOException, OFXParseException {
 		try {
 
-			//File file = new File("/home/solimarss/Downloads/extrato.ofx");
 			
-			File fileSource = new File("/home/solimarss/Downloads/extrato.ofx");
-			File fileTarget = new File("/home/solimarss/Downloads/extrato-utf8.ofx");
+			
+			//File fileSource = new File("/home/solimar/git/jfinan/jfinan/doc/corrente.ofx");
+			//File fileTarget = new File("/home/solimar/git/jfinan/jfinan/doc/corrente-utf8.ofx");
+			
+			File fileSource = new File("/home/solimar/git/jfinan/jfinan/doc/poupanca.ofx");
+			File fileTarget = new File("/home/solimar/git/jfinan/jfinan/doc/poupanca-utf8.ofx");
+			
 			
 			ConverterFile.transform(fileSource, "ISO-8859-1", fileTarget, "UTF-8");
 			
@@ -49,6 +53,7 @@ public class OfxParse implements Serializable {
 
 			if (messageSet != null) {
 				List<BankStatementResponseTransaction> bank = ((BankingResponseMessageSet) messageSet).getStatementResponses();
+				
 				for (BankStatementResponseTransaction b : bank) {
 					System.out.println("Conta: " + b.getMessage().getAccount().getAccountNumber());
 					System.out.println("Agência: " + b.getMessage().getAccount().getBranchId());
@@ -58,12 +63,12 @@ public class OfxParse implements Serializable {
 					System.out.println("\nTRANSAÇÕES\n");
 
 					for (Transaction transaction : list) {
-						System.out.println("tipo: " + transaction.getTransactionType().name());
-						System.out.println("id: " + transaction.getId());
-						System.out.println("Documento: " + transaction.getReferenceNumber());
-						System.out.println("data: " + transaction.getDatePosted());
-						System.out.println("valor: " + transaction.getAmount());
-						System.out.println("descricao: " + transaction.getMemo());
+						System.out.println("TIPO:      " + transaction.getTransactionType().name());
+						System.out.println("ID:        " + transaction.getId());
+						System.out.println("DOCUMENTO: " + transaction.getReferenceNumber());
+						System.out.println("DATA:      " + transaction.getDatePosted());
+						System.out.println("VALOR:     " + transaction.getAmount());
+						System.out.println("DESCRIÇÃO: " + transaction.getMemo());
 						System.out.println("");
 					}
 				}

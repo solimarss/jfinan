@@ -29,10 +29,9 @@ public class OfxParseCredit implements Serializable {
 	public static void main(String[] args) throws IOException, OFXParseException {
 		try {
 
-			//File file = new File("/home/solimarss/Downloads/extrato.ofx");
 			
-			File fileSource = new File("/home/solimarss/Downloads/OUROCARD.ofx");
-			File fileTarget = new File("/home/solimarss/Downloads/OUROCARD-utf8.ofx");
+			File fileSource = new File("/home/solimar/git/jfinan/jfinan/doc/cartao.ofx");
+			File fileTarget = new File("/home/solimar/git/jfinan/jfinan/doc/cartao-utf8.ofx");
 			
 			ConverterFile.transform(fileSource, "ISO-8859-1", fileTarget, "UTF-8");
 			
@@ -46,7 +45,19 @@ public class OfxParseCredit implements Serializable {
 
 			ResponseEnvelope envelope = (ResponseEnvelope) a.unmarshal(new FileInputStream(fileTarget));
 
+			
 			CreditCardResponseMessageSet messageSet = (CreditCardResponseMessageSet) envelope.getMessageSet(MessageSetType.creditcard);
+			
+			
+			
+			
+			System.out.println("TIPO DE CARTÃO: "+messageSet.getType());
+			System.out.println("INSTITUIÇÃO: "+envelope.getSignonResponse().getFinancialInstitution().getOrganization());
+		
+			
+			
+			System.out.println("");
+			
 
 			List<CreditCardStatementResponseTransaction> responses = messageSet.getStatementResponses();
 			
@@ -54,17 +65,25 @@ public class OfxParseCredit implements Serializable {
 				
 				CreditCardStatementResponse message = response.getMessage();
 				
+				System.out.println("NÚMERO DO CARTÃO: "+message.getAccount().getAccountNumber());
+				System.out.println("");
+				
+				
 				String currencyCode = message.getCurrencyCode();
 				List<Transaction> transactions = message.getTransactionList().getTransactions();
+				
 				for (Transaction transaction : transactions) {
 					
 					
-					System.out.print(transaction.getId() + "         ");
-					System.out.print(transaction.getTransactionType() + "         ");
-					System.out.print(new SimpleDateFormat("dd/MM/yyyy").format(transaction.getDatePosted()) +"        ");
-					System.out.print(transaction.getMemo() + "         ");
-					System.out.print(transaction.getAmount() + "        " + currencyCode);
-					System.out.print("\n");
+					System.out.println("ID:    "+transaction.getId());
+					System.out.println("TIPO:  "+transaction.getTransactionType());
+					System.out.println("DATA:  "+ new SimpleDateFormat("dd/MM/yyyy").format(transaction.getDatePosted()));
+					System.out.println("MEMO   "+transaction.getMemo());
+					System.out.println("VALOR: "+transaction.getAmount() + " " + currencyCode);
+					System.out.println("");
+					
+					
+					
 					
 				}
 			}
