@@ -15,5 +15,20 @@
 			<version>1.6</version>
 		</dependency>
 
+		<!-- ORM -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.2.8.Final</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.derby/derby -->
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>10.13.1.1</version>
+		</dependency>
+
+
 	</dependencies>
 </project>
