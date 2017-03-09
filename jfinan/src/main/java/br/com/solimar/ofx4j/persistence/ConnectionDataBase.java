@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 public class ConnectionDataBase {
 
 	private static final String USER = "root";
@@ -13,6 +15,7 @@ public class ConnectionDataBase {
 
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 		System.out.println("Conectando ao Banco de Dados");
+		JOptionPane.showMessageDialog(null, "ok");
 		Class.forName(DRIVER);
 		return DriverManager.getConnection(URL);
 
