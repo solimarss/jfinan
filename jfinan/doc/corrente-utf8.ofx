@@ -5,7 +5,7 @@ OFXHEADER:100DATA:OFXSGMLVERSION:102SECURITY:NONEENCODING:USASCIICHARSET:12
             <CODE>0</CODE>
             <SEVERITY>INFO</SEVERITY>
          </STATUS>
-         <DTSERVER>20170308120000[-3:BRT]</DTSERVER>
+         <DTSERVER>20170309120000[-3:BRT]</DTSERVER>
          <LANGUAGE>POR</LANGUAGE>
          <FI>
             <ORG>Banco do Brasil</ORG>
@@ -30,7 +30,7 @@ OFXHEADER:100DATA:OFXSGMLVERSION:102SECURITY:NONEENCODING:USASCIICHARSET:12
             </BANKACCTFROM>
             <BANKTRANLIST>
                <DTSTART>20170224120000[-3:BRT]</DTSTART>
-               <DTEND>20170308120000[-3:BRT]</DTEND>
+               <DTEND>20170309120000[-3:BRT]</DTEND>
                <STMTTRN>
                   <TRNTYPE>OTHER</TRNTYPE>
                   <DTPOSTED>20170301120000[-3:BRT]</DTPOSTED>
@@ -229,10 +229,19 @@ OFXHEADER:100DATA:OFXSGMLVERSION:102SECURITY:NONEENCODING:USASCIICHARSET:12
                   <REFNUM>980.865.512.002.593</REFNUM>
                   <MEMO>Telefone Pre-Pago - 91980865512-TIM - Para</MEMO>
                </STMTTRN>
+               <STMTTRN>
+                  <TRNTYPE>OTHER</TRNTYPE>
+                  <DTPOSTED>20170308120000[-3:BRT]</DTPOSTED>
+                  <TRNAMT>-15.00</TRNAMT>
+                  <FITID>20170308115000</FITID>
+                  <CHECKNUM>769931523001</CHECKNUM>
+                  <REFNUM>991.769.931.523.001</REFNUM>
+                  <MEMO>Telefone Pre-Pago - 94991769931-Vivo AM,AP,MA,RR,PA</MEMO>
+               </STMTTRN>
             </BANKTRANLIST>
             <LEDGERBAL>
-               <BALAMT>-622.30</BALAMT>
-               <DTASOF>20170308120000[-3:BRT]</DTASOF>
+               <BALAMT>-637.30</BALAMT>
+               <DTASOF>20170309120000[-3:BRT]</DTASOF>
             </LEDGERBAL>
          </STMTRS>
       </STMTTRNRS>

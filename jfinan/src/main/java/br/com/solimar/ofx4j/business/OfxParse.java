@@ -5,7 +5,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Scanner;
 
 import net.sf.ofx4j.domain.data.MessageSetType;
 import net.sf.ofx4j.domain.data.ResponseEnvelope;
@@ -30,11 +32,15 @@ public class OfxParse implements Serializable {
 
 			
 			
-			//File fileSource = new File("/home/solimar/git/jfinan/jfinan/doc/corrente.ofx");
-			//File fileTarget = new File("/home/solimar/git/jfinan/jfinan/doc/corrente-utf8.ofx");
+			File fileSource = new File("/home/solimar/git/jfinan/jfinan/doc/corrente.ofx");
+			File fileTarget = new File("/home/solimar/git/jfinan/jfinan/doc/corrente-utf8.ofx");
 			
-			File fileSource = new File("/home/solimar/git/jfinan/jfinan/doc/poupanca.ofx");
-			File fileTarget = new File("/home/solimar/git/jfinan/jfinan/doc/poupanca-utf8.ofx");
+			//File fileSource = new File("/home/solimar/git/jfinan/jfinan/doc/poupanca.ofx");
+			//File fileTarget = new File("/home/solimar/git/jfinan/jfinan/doc/poupanca-utf8.ofx");
+			
+			
+			//Verifica se há a indicação de timezone no arquivo
+			System.out.println("TEM TIME ZONE: "+Util.arquivoPossuiTesto(fileTarget, "[-3:BRT]"));
 			
 			
 			ConverterFile.transform(fileSource, "ISO-8859-1", fileTarget, "UTF-8");
@@ -66,6 +72,7 @@ public class OfxParse implements Serializable {
 						System.out.println("TIPO:      " + transaction.getTransactionType().name());
 						System.out.println("ID:        " + transaction.getId());
 						System.out.println("DOCUMENTO: " + transaction.getReferenceNumber());
+						System.out.println("DATA:      " + new SimpleDateFormat("dd/MM/yyyy").format(transaction.getDatePosted()));
 						System.out.println("DATA:      " + transaction.getDatePosted());
 						System.out.println("VALOR:     " + transaction.getAmount());
 						System.out.println("DESCRIÇÃO: " + transaction.getMemo());
