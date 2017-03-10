@@ -1,14 +1,10 @@
 package br.com.solimar.ofx4j.core;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-
-import br.com.solimar.ofx4j.persistence.ConnectionDataBase;
 
 public class Main {
 
@@ -18,6 +14,7 @@ public class Main {
 		//Connection connection = ConnectionDataBase.getConnection();
 		//connection.close();
 		
+			
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jfinan");  
 		EntityManager em = emf.createEntityManager();                               

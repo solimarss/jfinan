@@ -6,15 +6,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 import java.util.TimeZone;
-
-import org.apache.derby.tools.sysinfo;
 
 import net.sf.ofx4j.domain.data.MessageSetType;
 import net.sf.ofx4j.domain.data.ResponseEnvelope;
@@ -35,30 +28,23 @@ public class OfxParseCredit implements Serializable {
 	private static InputStreamReader r;
 
 	public static void main(String[] args) throws IOException, OFXParseException {
-		
-		
-		 
-		
-			
-		
-		
-		
+
 		try {
 
 			File fileSource = new File("/home/solimar/git/jfinan/jfinan/doc/cartao.ofx");
 			File fileTarget = new File("/home/solimar/git/jfinan/jfinan/doc/cartao-utf8.ofx");
-			
-			
-			//Verifica se há a indicação de timezone no arquivo
-			if(!Util.arquivoPossuiTesto(fileTarget, "[-3:BRT]")){
+
+			// Verifica se há a indicação de timezone no arquivo
+			if (!UtilFile.arquivoPossuiTexto(fileTarget, "[-3:BRT]")) {
 				System.out.println("Não tem indicação de time zone");
-				//Alterar a time zone para o timezone zero, pois no arquivo não há indicação de timezone nas datas
-				//sem  isso o ofx4j converte as datas com 3 horas a menos pois essa é a timezone do brasil (-3)  
-				 TimeZone.setDefault(TimeZone.getTimeZone("BRT"));
-				//System.out.println("TIME ZONE DEFAULT: "+TimeZone.getDefault());
+				// Alterar a time zone para o timezone zero, pois no arquivo não
+				// há indicação de timezone nas datas
+				// sem isso o ofx4j converte as datas com 3 horas a menos pois
+				// essa é a timezone do brasil (-3)
+				TimeZone.setDefault(TimeZone.getTimeZone("BRT"));
+				// System.out.println("TIME ZONE DEFAULT:
+				// "+TimeZone.getDefault());
 			}
-			
-			
 
 			ConverterFile.transform(fileSource, "ISO-8859-1", fileTarget, "UTF-8");
 
@@ -73,13 +59,9 @@ public class OfxParseCredit implements Serializable {
 			CreditCardResponseMessageSet messageSet = (CreditCardResponseMessageSet) envelope
 					.getMessageSet(MessageSetType.creditcard);
 
-			System.out.println("TIPO DE CARTÃO: " + messageSet.getType());
 			System.out.println(
 					"INSTITUIÇÃO: " + envelope.getSignonResponse().getFinancialInstitution().getOrganization());
 
-			
-
-			
 			System.out.println("");
 
 			List<CreditCardStatementResponseTransaction> responses = messageSet.getStatementResponses();
@@ -91,11 +73,9 @@ public class OfxParseCredit implements Serializable {
 				System.out.println("NÚMERO DO CARTÃO: " + message.getAccount().getAccountNumber());
 				System.out.println("VALOR TOTAL : " + message.getLedgerBalance().getAmount());
 				System.out.println("DATA VENCIMENTO : " + message.getLedgerBalance().getAsOfDate());
-				
-						
-				
+
 				SimpleDateFormat isoFormat = new SimpleDateFormat("dd/MM/yyyy");
-				//isoFormat.setTimeZone(TimeZone.getTimeZone("+3"));
+				// isoFormat.setTimeZone(TimeZone.getTimeZone("+3"));
 				System.out.println("DATA VENCIMENTO : " + isoFormat.format(message.getLedgerBalance().getAsOfDate()));
 
 				System.out.println("");
@@ -111,6 +91,7 @@ public class OfxParseCredit implements Serializable {
 							"DATA:  " + new SimpleDateFormat("dd/MM/yyyy").format(transaction.getDatePosted()));
 					System.out.println("MEMO   " + transaction.getMemo());
 					System.out.println("VALOR: " + transaction.getAmount() + " " + currencyCode);
+					System.out.println("VALOR: " + String.valueOf(transaction.getAmount()) + " " + currencyCode);
 					System.out.println("");
 
 				}

@@ -1,4 +1,4 @@
-package br.com.solimar.ofx4j.persistence;
+package br.com.solimar.ofx4j.domain;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package br.com.solimar.ofx4j.persistence;
+package br.com.solimar.ofx4j.domain;
 
 import java.io.Serializable;
 
@@ -10,12 +10,11 @@ import javax.persistence.Id;
 @Entity
 public class Lancamento implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	
-	
-	
+		
 
 }
