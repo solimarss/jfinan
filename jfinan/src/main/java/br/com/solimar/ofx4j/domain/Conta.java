@@ -20,27 +20,17 @@ public class Conta implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "NOME")
+	@Column(name = "NOME", length = 300)
 	private String nome;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "CONTA_TIPO", nullable = false, length = 30)
 	private ContaTipoEnum contaTipo;
-	
-	@Column(name = "CONTA_NUMERO")
+
+	@Column(name = "CONTA_NUMERO", length = 70)
 	private String contaNumero;
 
-	@Column(name = "AGENCIA_NUMERO")
+	@Column(name = "AGENCIA_NUMERO", length = 70)
 	private String agenciaNumero;
-	
-	@Column(name = "CARTAO_CREDTO_NUM")
-	private String cartaoCreditoNumero;
-	
-	
-	
-
-	
-	
-	
 
 }
