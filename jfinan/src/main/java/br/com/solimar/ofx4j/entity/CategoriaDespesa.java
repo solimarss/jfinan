@@ -1,4 +1,4 @@
-package br.com.solimar.ofx4j.domain;
+package br.com.solimar.ofx4j.entity;
 
 import java.io.Serializable;
 
@@ -9,8 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class ItemReceita implements Serializable{
-
+public class CategoriaDespesa implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
