@@ -8,9 +8,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -55,5 +57,81 @@ public class Lancamento implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "TIPO", nullable = false, length = 1)
 	private LancamentoTipoEnum tipo;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	private ContaApp contaApp;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
+	public BigDecimal getValor() {
+		return valor;
+	}
+
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
+	}
+
+	public boolean isValorConsiderado() {
+		return valorConsiderado;
+	}
+
+	public void setValorConsiderado(boolean valorConsiderado) {
+		this.valorConsiderado = valorConsiderado;
+	}
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	public Date getDataPagamento() {
+		return dataPagamento;
+	}
+
+	public void setDataPagamento(Date dataPagamento) {
+		this.dataPagamento = dataPagamento;
+	}
+
+	public LancamentoTipoEnum getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(LancamentoTipoEnum tipo) {
+		this.tipo = tipo;
+	}
+
+	public ContaApp getContaApp() {
+		return contaApp;
+	}
+
+	public void setContaApp(ContaApp contaApp) {
+		this.contaApp = contaApp;
+	}
+	
 
 }
